@@ -102,4 +102,52 @@ map.loadImage('images/flag.png', function (error, image){
             document.getElementById('citybutton').onclick = function(){
             	getAPIdata();
             }
+
+
+
+
+
             // init data stream
+            var geocoder = new MapboxGeocoder({
+                accessToken: mapboxgl.accessToken,
+                mapboxgl: mapboxgl
+            });
+
+            // Voeg de zoekbalk toe
+            map.addControl( geocoder, 'top-left');
+
+            map.on('load', function () {
+            	// Listen for the `geocoder.input` event that is triggered when a user
+            	// makes a selection
+            	geocoder.on('result', function (ev) {
+            	  console.log(ev.result.center);
+                //document.getElementById('coordinaten').innerHTML = ev.result.center[0] + '-' + ev.result.center[1];
+                getAPIdata(ev.result.center[0], ev.result.center[1]);
+            	});
+            });
+            function getAPIdata(ingevoerdeLon, ingevoerdeLat) {
+
+            	// construct request
+            //	var city = document.getElementById('city').value;
+            	var request = 'https://api.openweathermap.org/data/2.5/weather?appid=639b70cdea4ec366f54e164e3bc7269c&lon=' +ingevoerdeLon+ '&lat=' +ingevoerdeLat;
+            					// https://api.openweathermap.org/data/2.5/weather?appid=HIERAPIKEY&q=rotterdam
+            	// get current weather
+            	fetch(request)  //fetch is geef mij info, vraag stellen aan weathermap
+
+            	// parse response to JSON format . daarna gebeurt dit,
+            	.then(function(response) {
+            		return response.json(); //maak van respond een json
+            	})
+
+            	// iets doen met  response
+            	.then(function(response) { //hiertussne opschrijven wat ik wil doen met info weather app
+            		// show full JSON object
+            		console.log(response);//response.main.temp --komt het in de console.
+            		var weatherBox = document.getElementById('weer');
+            		//weatherBox.innerHTML = response;
+            		//weatherBox.innerHTML = response.weather[0].description;
+            		weatherBox.innerHTML = (response.main.temp - 273.15).toFixed(1) + ' &#176;C </br>' + '' + (response.weather[0].description);
+
+            		// weatherBox.innerHTML = degC + '&#176;C <br>';
+            	});
+            }
