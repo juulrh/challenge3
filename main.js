@@ -90,7 +90,7 @@ map.loadImage('images/flag.png', function (error, image){
             		var weatherBox = document.getElementById('weather');
             		//weatherBox.innerHTML = response;
             		//weatherBox.innerHTML = response.weather[0].description;
-            		weatherBox.innerHTML = (response.main.temp - 273.15).toFixed(1) + ' &#176;C </br>' + '' + (response.weather[0].description) + '</br>' + 'Windspeed: ' + (response.wind.speed) + ' km/h';
+            		weatherBox.innerHTML = (response.main.temp - 273.15).toFixed(1) + ' &#176;C </br>' + '' + (response.weather[0].description) + '</br>' + 'Windspeed: ' + response.wind.speed + ' km/h';
             		//weatherBox.innerHTML = (response.weather[0].description);
             		//weatherBox.innerHTML = response.wind.speed;
 
