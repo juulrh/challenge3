@@ -151,3 +151,23 @@ map.loadImage('images/flag.png', function (error, image){
             		// weatherBox.innerHTML = degC + '&#176;C <br>';
             	});
             }
+
+  function getMoreData() {
+
+    var city = document.getElementById('city').value;
+    var request = 'https//api.ipgeolocation.io/astronomy?apiKey=1eeb4b955fe247768ea167e1d406ce08&location=' + city;
+
+    fetch(request)
+
+    // parse response to JSON format . daarna gebeurt dit,
+    .then(function(response) {
+      return response.json(); //maak van respond een json
+    })
+
+    // iets doen met  response
+    .then(function(response) { //hiertussne opschrijven wat ik wil doen met info weather app
+      // show full JSON object
+      console.log(response);//response.main.temp --komt het in de console.
+    //  var weatherBox = document.getElementById('zonmaan');
+    });
+  }

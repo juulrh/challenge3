@@ -12,7 +12,7 @@ body {
     grid-template-columns: 2fr;
     grid-template-areas:
     'main1 main2'
-    'main3 main3';
+    'main1 main3';
 }
 
 /* .grid-container > div {
@@ -23,6 +23,10 @@ body {
 }
 .weer {
     grid-area: main2;
+}
+
+.zonmaan {
+  grid-area: main3;
 }
 
 #titel {
@@ -43,7 +47,15 @@ body {
  #weer {
   padding-left: 20px;
   background-color: #9E94D6;
-  height: 60vh;
+  height: 29vh;
   width: 25vw;
   border: white solid 4px;
+}
+#zonmaan {
+ padding-left: 20px;
+ margin-top: 20px;
+ background-color: #9E94D6;
+ height: 27vh;
+ width: 25vw;
+ border: white solid 4px;
 }
