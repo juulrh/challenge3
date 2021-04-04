@@ -33,7 +33,7 @@ body {
       display: block;
       margin-left: auto;
       margin-right: auto;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
       margin-top: 15px;
       max-width: 60%;
 }
@@ -41,21 +41,23 @@ body {
 #map {
   height: 60vh;
   width: 60vw;
-  border: white solid 4px;
+  /* border: #9E94D6 solid 4px; */
 }
 
  #weer {
   padding-left: 20px;
   background-color: #9E94D6;
-  height: 29vh;
+  height: 28vh;
   width: 25vw;
-  border: white solid 4px;
+  /* border: white solid 4px; */
+  padding-top: 10px;
 }
-#zonmaan {
+#nieuws {
  padding-left: 20px;
  margin-top: 20px;
  background-color: #9E94D6;
  height: 27vh;
  width: 25vw;
- border: white solid 4px;
+ /* border: white solid 4px; */
+ padding-top: 10px;
 }
