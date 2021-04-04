@@ -168,7 +168,7 @@ map.loadImage('images/flag.png', function (error, image){
   //     var maanzonBox = document.getElementById('zonmaan');
   //   });
   // }
-// 
+//
 // function getAPIData() {
 //
 //   //var request = 'https://newsapi.org/v2/everything?q=Apple&from=2021-04-03&sortBy=popularity&apiKey=8bfdf0e85006470f90c1d383d80ee8e0';
@@ -192,7 +192,7 @@ map.loadImage('images/flag.png', function (error, image){
 // }
 
 function getNews () {
-  fetch('https://newsapi.org/v2/everything?q=Apple&from=2021-04-03&sortBy=popularity&apiKey=8bfdf0e85006470f90c1d383d80ee8e0')
+  fetch('http://newsapi.org/v2/top-headlines?country=us&apiKey=8bfdf0e85006470f90c1d383d80ee8e0')
   .then(function(response) {
     return response.json(); //maak van respond een json
   })
