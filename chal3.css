@@ -94,10 +94,51 @@ body {
       display: grid;
       grid-template-columns: 2fr;
       grid-template-areas:
-      'main1 main2'
-      'main1 main3';
+      'main1 main1'
+      'main2 main3';
   }
+#map {
+  width: 80vw;
+  margin-left: 80px;
+  height: 60vh;
+}
 
-#weer, #nieuws {
-  font-size: 20px;
+#weer {
+  margin-left: 80px;
+  margin-top: 40px;
+  width: 37vw;
+}
+
+#nieuws {
+  margin-top: 40px;
+  margin-right: 100px;
+  width: 37vw;
+}
+
+@media (min-width: 1920px) {
+  .grid-container {
+      display: grid;
+      grid-template-columns: 3fr;
+      grid-template-areas:
+      'main1 main2 main3'
+      'main1 main2 main3';
+  }
+#map {
+  height: 70vh;
+  width: 40vw;
+  margin-left: 40px;
+}
+
+#weer {
+  height: 69vh;
+  margin-top: -1px;
+  width: 20vw;
+  margin-left: 40px;
+}
+
+#nieuws {
+  height: 69vh;
+  margin-top: -1px;
+  width: 20vw;
+
 }
