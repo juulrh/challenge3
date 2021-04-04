@@ -69,43 +69,39 @@ map.loadImage('images/flag.png', function (error, image){
 
 
             // ICON UITROEPS coordinates: [6.558267009864895, 53.17932862664539]
-    function getAPIdata() {
-
-            	// construct request
-            	var city = document.getElementById('city').value;
-            	var request = 'https://api.openweathermap.org/data/2.5/weather?appid=639b70cdea4ec366f54e164e3bc7269c&q=' + city;
-            					// https://api.openweathermap.org/data/2.5/weather?appid=HIERAPIKEY&q=rotterdam
-            	// get current weather
-            	fetch(request)  //fetch is geef mij info, vraag stellen aan weathermap
-
-            	// parse response to JSON format . daarna gebeurt dit,
-            	.then(function(response) {
-            		return response.json(); //maak van respond een json
-            	})
-
-            	// iets doen met  response
-            	.then(function(response) { //hiertussne opschrijven wat ik wil doen met info weather app
-            		// show full JSON object
-            		console.log(response);//response.main.temp --komt het in de console.
-            		var weatherBox = document.getElementById('weather');
-            		//weatherBox.innerHTML = response;
-            		//weatherBox.innerHTML = response.weather[0].description;
-            		weatherBox.innerHTML = (response.main.temp - 273.15).toFixed(1) + ' &#176;C </br>' + '' + (response.weather[0].description) + '</br>' + 'Windspeed: ' + response.wind.speed + ' km/h';
-            		//weatherBox.innerHTML = (response.weather[0].description);
-            		//weatherBox.innerHTML = response.wind.speed;
-
-            		// var degC = Math.floor(response.main.temp - 273.15);
-            		// var weatherBox = document.getElementById('weather');
-            		// weatherBox.innerHTML = degC + '&#176;C <br>';
-            	});
-            }
+    // function getAPIdata() {
+    //
+    //         	// construct request
+    //         	var city = document.getElementById('city').value;
+    //         	var request = 'https://api.openweathermap.org/data/2.5/weather?appid=639b70cdea4ec366f54e164e3bc7269c&q=' + city;
+    //         					// https://api.openweathermap.org/data/2.5/weather?appid=HIERAPIKEY&q=rotterdam
+    //         	// get current weather
+    //         	fetch(request)  //fetch is geef mij info, vraag stellen aan weathermap
+    //
+    //         	// parse response to JSON format . daarna gebeurt dit,
+    //         	.then(function(response) {
+    //         		return response.json(); //maak van respond een json
+    //         	})
+    //
+    //         	// iets doen met  response
+    //         	.then(function(response) { //hiertussne opschrijven wat ik wil doen met info weather app
+    //         		// show full JSON object
+    //         		console.log(response);//response.main.temp --komt het in de console.
+    //         		var weatherBox = document.getElementById('weather');
+    //         		//weatherBox.innerHTML = response;
+    //         		//weatherBox.innerHTML = response.weather[0].description;
+    //         		weatherBox.innerHTML = (response.main.temp - 273.15).toFixed(1) + ' &#176;C </br>' + '' + (response.weather[0].description) + '</br>' + 'Windspeed: ' + response.wind.speed + ' km/h';
+    //         		//weatherBox.innerHTML = (response.weather[0].description);
+    //         		//weatherBox.innerHTML = response.wind.speed;
+    //
+    //         		// var degC = Math.floor(response.main.temp - 273.15);
+    //         		// var weatherBox = document.getElementById('weather');
+    //         		// weatherBox.innerHTML = degC + '&#176;C <br>';
+    //         	});
+    //         }
             document.getElementById('citybutton').onclick = function(){
             	getAPIdata();
             }
-
-
-
-
 
             // init data stream
             var geocoder = new MapboxGeocoder({
@@ -146,28 +142,56 @@ map.loadImage('images/flag.png', function (error, image){
             		var weatherBox = document.getElementById('weer');
             		//weatherBox.innerHTML = response;
             		//weatherBox.innerHTML = response.weather[0].description;
-            		weatherBox.innerHTML = (response.main.temp - 273.15).toFixed(1) + ' &#176;C </br>' + '' + (response.weather[0].description);
+            		weatherBox.innerHTML = (response.main.temp - 273.15).toFixed(1) + ' &#176;C </br>' + '' + (response.weather[0].description) + '</br>' + 'Windspeed: ' + response.wind.speed + ' km/h';
 
             		// weatherBox.innerHTML = degC + '&#176;C <br>';
             	});
             }
 
-  function getMoreData() {
+  // function getMoreData() {
+  //
+  //   var city = document.getElementById('citybutton').value;
+  //   var request = 'https//api.ipgeolocation.io/astronomy?apiKey=1eeb4b955fe247768ea167e1d406ce08&location=' + city;
+  //
+  //   fetch(request)
+  //
+  //   // parse response to JSON format . daarna gebeurt dit,
+  //   .then(function(response) {
+  //     return response.json(); //maak van respond een json
+  //   })
+  //
+  //   // iets doen met  response
+  //   .then(function(response) { //hiertussne opschrijven wat ik wil doen met info weather app
+  //     // show full JSON object
+  //     console.log(response);//response.main.temp --komt het in de console.
+  //     var maanzonBox = document.getElementById('zonmaan');
+  //   });
+  // }
 
-    var city = document.getElementById('city').value;
-    var request = 'https//api.ipgeolocation.io/astronomy?apiKey=1eeb4b955fe247768ea167e1d406ce08&location=' + city;
+function getAPIData() {
 
-    fetch(request)
+  //var request = 'https://newsapi.org/v2/everything?q=Apple&from=2021-04-03&sortBy=popularity&apiKey=8bfdf0e85006470f90c1d383d80ee8e0';
+var request = 'https://newsapi.org/v2/top-headlines?country=nl&apiKey=8bfdf0e85006470f90c1d383d80ee8e0';
+  fetch(request)  //fetch is geef mij info, vraag stellen aan weathermap
 
-    // parse response to JSON format . daarna gebeurt dit,
-    .then(function(response) {
-      return response.json(); //maak van respond een json
-    })
+  // parse response to JSON format . daarna gebeurt dit,
+  .then(function(response) {
+    return response.json(); //maak van respond een json
+  })
 
-    // iets doen met  response
-    .then(function(response) { //hiertussne opschrijven wat ik wil doen met info weather app
-      // show full JSON object
-      console.log(response);//response.main.temp --komt het in de console.
-    //  var weatherBox = document.getElementById('zonmaan');
-    });
-  }
+  // iets doen met  response
+  .then(function(response) { //hiertussne opschrijven wat ik wil doen met info weather app
+    // show full JSON object
+    console.log(response);//response.main.temp --komt het in de console.
+    var zonMaan = document.getElementById('zonmaan');
+    zonMaan.innerHTML = response;
+    //weatherBox.innerHTML = response.weather[0].description;
+  //  zonMaan.innerHTML = author.titel[0];
+    //weatherBox.innerHTML = (response.weather[0].description);
+    //weatherBox.innerHTML = response.wind.speed;
+
+    // var degC = Math.floor(response.main.temp - 273.15);
+    // var weatherBox = document.getElementById('weather');
+    // weatherBox.innerHTML = degC + '&#176;C <br>';
+  });
+}
