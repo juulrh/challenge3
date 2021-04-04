@@ -121,7 +121,7 @@ map.loadImage('images/flag.png', function (error, image){
                 getAPIdata(ev.result.center[0], ev.result.center[1]);
             	});
             });
-            
+
             function getAPIdata(ingevoerdeLon, ingevoerdeLat) {
 
             	// construct request
@@ -168,32 +168,39 @@ map.loadImage('images/flag.png', function (error, image){
   //     var maanzonBox = document.getElementById('zonmaan');
   //   });
   // }
+// 
+// function getAPIData() {
+//
+//   //var request = 'https://newsapi.org/v2/everything?q=Apple&from=2021-04-03&sortBy=popularity&apiKey=8bfdf0e85006470f90c1d383d80ee8e0';
+// var request = 'https://newsapi.org/v2/top-headlines?country=nl&apiKey=8bfdf0e85006470f90c1d383d80ee8e0';
+//
+//   fetch(request)  //fetch is geef mij info, vraag stellen aan weathermap
+//
+//   // parse response to JSON format . daarna gebeurt dit,
+//   .then(function(response) {
+//     return response.json(); //maak van respond een json
+//   })
+//
+//   // iets doen met  response
+//   .then(function(response) { //hiertussne opschrijven wat ik wil doen met info weather app
+//     // show full JSON object
+//     console.log(response);//response.main.temp --komt het in de console.
+//     var nieuws = document.getElementById('nieuws');
+//     nieuws.innerHTML = response;
+//
+//   });
+// }
 
-function getAPIData() {
-
-  //var request = 'https://newsapi.org/v2/everything?q=Apple&from=2021-04-03&sortBy=popularity&apiKey=8bfdf0e85006470f90c1d383d80ee8e0';
-var request = 'https://newsapi.org/v2/top-headlines?country=nl&apiKey=8bfdf0e85006470f90c1d383d80ee8e0';
-
-  fetch(request)  //fetch is geef mij info, vraag stellen aan weathermap
-
-  // parse response to JSON format . daarna gebeurt dit,
+function getNews () {
+  fetch('https://newsapi.org/v2/everything?q=Apple&from=2021-04-03&sortBy=popularity&apiKey=8bfdf0e85006470f90c1d383d80ee8e0')
   .then(function(response) {
     return response.json(); //maak van respond een json
   })
-
-  // iets doen met  response
   .then(function(response) { //hiertussne opschrijven wat ik wil doen met info weather app
     // show full JSON object
     console.log(response);//response.main.temp --komt het in de console.
     var nieuws = document.getElementById('nieuws');
-    nieuws.innerHTML = response;
-    //weatherBox.innerHTML = response.weather[0].description;
-  //  zonMaan.innerHTML = author.titel[0];
-    //weatherBox.innerHTML = (response.weather[0].description);
-    //weatherBox.innerHTML = response.wind.speed;
+  //  nieuws.innerHTML = response;
 
-    // var degC = Math.floor(response.main.temp - 273.15);
-    // var weatherBox = document.getElementById('weather');
-    // weatherBox.innerHTML = degC + '&#176;C <br>';
   });
 }
