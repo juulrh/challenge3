@@ -149,47 +149,6 @@ map.loadImage('images/flag.png', function (error, image){
             	});
             }
 
-  // function getMoreData() {
-  //
-  //   var city = document.getElementById('citybutton').value;
-  //   var request = 'https//api.ipgeolocation.io/astronomy?apiKey=1eeb4b955fe247768ea167e1d406ce08&location=' + city;
-  //
-  //   fetch(request)
-  //
-  //   // parse response to JSON format . daarna gebeurt dit,
-  //   .then(function(response) {
-  //     return response.json(); //maak van respond een json
-  //   })
-  //
-  //   // iets doen met  response
-  //   .then(function(response) { //hiertussne opschrijven wat ik wil doen met info weather app
-  //     // show full JSON object
-  //     console.log(response);//response.main.temp --komt het in de console.
-  //     var maanzonBox = document.getElementById('zonmaan');
-  //   });
-  // }
-
-// function getAPIData() {
-//
-//   //var request = 'https://newsapi.org/v2/everything?q=Apple&from=2021-04-03&sortBy=popularity&apiKey=8bfdf0e85006470f90c1d383d80ee8e0';
-//   url = 'https://newsapi.org/v2/top-headlines?country=nl&apiKey=8bfdf0e85006470f90c1d383d80ee8e0');
-//
-//     //fetch is geef mij info, vraag stellen aan weathermap
-//
-//   // parse response to JSON format . daarna gebeurt dit,
-//   .then(function(response) {
-//     return response.json(); //maak van respond een json
-//   })
-//
-//   // iets doen met  response
-//   .then(function(response) { //hiertussne opschrijven wat ik wil doen met info weather app
-//     // show full JSON object
-//     console.log(response);//response.main.temp --komt het in de console.
-//     var nieuws = document.getElementById('nieuws');
-//     nieuws.innerHTML = response;
-//
-//   });
-// }
 
 function getNews() {
 
@@ -213,16 +172,3 @@ function getNews() {
   });
 }
 getNews();
-
-
-// var req = new Request(url);
-//
-// fetch(req)
-//     .then(function(response) {
-//         return response.json(); //maak van respond een json
-//       })
-//       .then(function(response) { //hiertussne opschrijven wat ik wil doen met info weather app
-//         // show full JSON object
-//         console.log(response);
-//         var weatherBox = document.getElementById('nieuws');
-//       })
