@@ -193,7 +193,7 @@ map.loadImage('images/flag.png', function (error, image){
 
 function getNews() {
 
-  var x = 'https://newsapi.org/v2/top-headlines?country=nl&apiKey=8bfdf0e85006470f90c1d383d80ee8e0';
+  var request = 'https://newsapi.org/v2/top-headlines?country=nl&apiKey=8bfdf0e85006470f90c1d383d80ee8e0';
 
   fetch(request)  //fetch is geef mij info, vraag stellen aan weathermap
 
@@ -206,14 +206,15 @@ function getNews() {
   .then(function(response) { //hiertussne opschrijven wat ik wil doen met info weather app
     // show full JSON object
     console.log(response);
-  //  var nieuwsBox = document.getElementById('nieuws');
-  //  nieuwsBox.innerHTML = response;
+    var nieuwsBox = document.getElementById('nieuws');
+    nieuwsBox.innerHTML = response;
     //weatherBox.innerHTML = response.weather[0].description;
   //  weatherBox.innerHTML = 'Weather' + '</br>' + (response.main.temp - 273.15).toFixed(1) + ' &#176;C </br>' + '' + (response.weather[0].description) + '</br>' + 'Windspeed: ' + response.wind.speed + ' m/s';
-
-    // weatherBox.innerHTML = degC + '&#176;C <br>';
-});
+  });
 }
+getNews();
+
+
 // var req = new Request(url);
 //
 // fetch(req)
