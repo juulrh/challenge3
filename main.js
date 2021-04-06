@@ -143,7 +143,7 @@ map.loadImage('images/flag.png', function (error, image){
             		var weatherBox = document.getElementById('weer');
             		//weatherBox.innerHTML = response;
             		//weatherBox.innerHTML = response.weather[0].description;
-            		weatherBox.innerHTML = (response.main.temp - 273.15).toFixed(1) + ' &#176;C </br>' + '' + (response.weather[0].description) + '</br>' + 'Windspeed: ' + response.wind.speed + ' km/h';
+            		weatherBox.innerHTML = 'Weather' + '</br>' + (response.main.temp - 273.15).toFixed(1) + ' &#176;C </br>' + '' + (response.weather[0].description) + '</br>' + 'Windspeed: ' + response.wind.speed + ' m/s';
 
             		// weatherBox.innerHTML = degC + '&#176;C <br>';
             	});
@@ -190,3 +190,38 @@ map.loadImage('images/flag.png', function (error, image){
 //
 //   });
 // }
+
+function getNews() {
+
+  var x = 'https://newsapi.org/v2/top-headlines?country=nl&apiKey=8bfdf0e85006470f90c1d383d80ee8e0';
+
+  fetch(request)  //fetch is geef mij info, vraag stellen aan weathermap
+
+  // parse response to JSON format . daarna gebeurt dit,
+  .then(function(response) {
+    return response.json(); //maak van respond een json
+  })
+
+  // iets doen met  response
+  .then(function(response) { //hiertussne opschrijven wat ik wil doen met info weather app
+    // show full JSON object
+    console.log(response);
+  //  var nieuwsBox = document.getElementById('nieuws');
+  //  nieuwsBox.innerHTML = response;
+    //weatherBox.innerHTML = response.weather[0].description;
+  //  weatherBox.innerHTML = 'Weather' + '</br>' + (response.main.temp - 273.15).toFixed(1) + ' &#176;C </br>' + '' + (response.weather[0].description) + '</br>' + 'Windspeed: ' + response.wind.speed + ' m/s';
+
+    // weatherBox.innerHTML = degC + '&#176;C <br>';
+});
+}
+// var req = new Request(url);
+//
+// fetch(req)
+//     .then(function(response) {
+//         return response.json(); //maak van respond een json
+//       })
+//       .then(function(response) { //hiertussne opschrijven wat ik wil doen met info weather app
+//         // show full JSON object
+//         console.log(response);
+//         var weatherBox = document.getElementById('nieuws');
+//       })
