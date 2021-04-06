@@ -149,37 +149,25 @@ map.loadImage('images/flag.png', function (error, image){
             	});
             }
 
-//
-// function getNews() {
-//
-//   var request = 'https://newsapi.org/v2/top-headlines?country=nl&apiKey=8bfdf0e85006470f90c1d383d80ee8e0';
-//
-//   fetch(request)  //fetch is geef mij info, vraag stellen aan weathermap
-//
-//   // parse response to JSON format . daarna gebeurt dit,
-//   .then(function(response) {
-//     return response.json(); //maak van respond een json
-//   })
-//
-//   // iets doen met  response
-//   .then(function(response) { //hiertussne opschrijven wat ik wil doen met info weather app
-//     // show full JSON object
-//     console.log(response);
-//     var nieuwsBox = document.getElementById('nieuws');
-//     nieuwsBox.innerHTML = response;
-//     //weatherBox.innerHTML = response.weather[0].description;
-//   //  weatherBox.innerHTML = 'Weather' + '</br>' + (response.main.temp - 273.15).toFixed(1) + ' &#176;C </br>' + '' + (response.weather[0].description) + '</br>' + 'Windspeed: ' + response.wind.speed + ' m/s';
-//   });
-// }
-// getNews();
 
-function Request(){
-var request = 'https://api.openweathermap.org/data/2.5/weather?appid=639b70cdea4ec366f54e164e3bc7269c&lon=' +ingevoerdeLon+ '&lat=' +ingevoerdeLat;
+function getNews() {
 
-var req = new Request(url);
+  var request = 'https://newsapi.org/v2/top-headlines?country=nl&apiKey=8bfdf0e85006470f90c1d383d80ee8e0';
 
-fetch(req)
-    .then(function(response) {
-        console.log(response.json());
-    })
-  }
+  fetch(request)  //fetch is geef mij info, vraag stellen
+
+  // parse response to JSON format . daarna gebeurt dit,
+  .then(function(response) {
+    return response.json();
+  })
+
+  .then(function(response) {
+
+    console.log(response);
+    var nieuws = document.getElementById('nieuws');
+    //nieuws.innerHTML = response;
+    //weatherBox.innerHTML = response.weather[0].description;
+  //  weatherBox.innerHTML = 'Weather' + '</br>' + (response.main.temp - 273.15).toFixed(1) + ' &#176;C </br>' + '' + (response.weather[0].description) + '</br>' + 'Windspeed: ' + response.wind.speed + ' m/s';
+  });
+}
+getNews();
