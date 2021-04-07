@@ -119,7 +119,7 @@ body {
 #geocoder {
   margin-left: 80px;
 }
-
+}
 @media (min-width: 1920px) {
   .grid-container {
       display: grid;
@@ -147,4 +147,5 @@ body {
 
 #geocoder {
   margin-left: 40px;
+}
 }
