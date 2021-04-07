@@ -185,7 +185,7 @@ map.loadImage('images/flag.png', function (error, image){
 
 
 
-// WERKT WEL, GEKKE DATUM EN TEKST
+//WERKT WEL, GEKKE DATUM EN TEKST
  function getNews() {
 
    var request = 'https://api.nasa.gov/planetary/apod?api_key=TmVvFQjkKXOxfapC7ExzRfOi2zf0CpYWdobgYXzM';
@@ -230,3 +230,24 @@ map.loadImage('images/flag.png', function (error, image){
  //   });
  // }
  // getNews();
+ function getNews() {
+
+   var request = 'https://test.spaceflightnewsapi.net/api/v2/articles?_limit=5';
+
+   fetch(request)  //fetch is geef mij info, vraag stellen
+
+   // parse response to JSON format . daarna gebeurt dit,
+   .then(function(response) {
+     return response.json();
+   })
+
+   .then(function(response) {
+
+     console.log(response);
+    var nieuws = document.getElementById('nieuws');
+     //nieuws.innerHTML = response;
+    nieuws.innerHTML = 'Space News' + '</br>'+ (response[0].title) + '</br>' + (response[1].title) + '</br>' +(response[2].title) + '</br>' +(response[3].title);
+   //  weatherBox.innerHTML = 'Weather' + '</br>' + (response.main.temp - 273.15).toFixed(1) + ' &#176;C </br>' + '' + (response.weather[0].description) + '</br>' + 'Windspeed: ' + response.wind.speed + ' m/s';
+   });
+ }
+ getNews();
