@@ -33,7 +33,7 @@ var locaties = [{
       type: 'Point',
       coordinates: [6.539079670415777, 53.168154040005206]
     }
-  }
+  },
 ];
 
 // DE MAPS
