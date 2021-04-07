@@ -110,18 +110,163 @@ map.loadImage('images/flag.png', function (error, image){
     //         		// weatherBox.innerHTML = degC + '&#176;C <br>';
     //         	});
     //         }
-            document.getElementById('citybutton').onclick = function(){
-            	getAPIdata();
-            }
+            // document.getElementById('citybutton').onclick = function(){
+            // 	getAPIdata();
+            // }
 
-            // init data stream
+            // // init data stream
+            // var geocoder = new MapboxGeocoder({
+            //     accessToken: mapboxgl.accessToken,
+            //     mapboxgl: mapboxgl
+            // });
+            //
+            // // Voeg de zoekbalk toe
+            // map.addControl( geocoder, 'top-left');
             var geocoder = new MapboxGeocoder({
                 accessToken: mapboxgl.accessToken,
-                mapboxgl: mapboxgl
+                types: 'country,region,place,postcode,locality,neighborhood'
             });
 
-            // Voeg de zoekbalk toe
-            map.addControl( geocoder, 'top-left');
+            // place with id
+            var features = [];
+
+            geocoder.addTo('#geocoder');
+
+            // Add geocoder result to container.
+            geocoder.on('result', function (e) {
+                let coords = e.result.geometry.coordinates;
+
+                //update map, go to coordinates
+                map.flyTo({
+                    center: coords,
+                    zoom: 15
+                });
+
+                features = [];
+                getSupermarkets(coords);
+                // getCultural(coords);
+            });
+
+            //andere api  parameter coords
+            function getSupermarkets(coords) {
+                const openTripMapKey = '5ae2e3f221c38a28845f05b6209bf7bfd923b79af11437d9379c8539';
+                let url = 'https://api.opentripmap.com/0.1/en/places/radius',
+                    qString = '?radius=1000&lon=' + coords[0] + '&lat=' + coords[1] + '&kinds=supermarkets&limit=20&apikey=' + openTripMapKey;
+
+                fetch(url + qString)
+                    .then(resp => {
+                        return resp.json();
+                    }).then(data => {
+                    let supermarkets = data.features;
+
+                    for (let i = 0; i < supermarkets.length; i++) {
+                        let supermarket = supermarkets[i];
+
+                        let obj = {};
+                        obj.id = supermarket.id;
+                        obj.type = 'Feature';
+                        obj.properties = {};
+                        obj.properties.description = '<strong>' + supermarket.properties.name + '</strong>';
+                        obj.properties.icon = 'supermarket';
+                        obj.geometry = {};
+                        obj.geometry.type = 'Point';
+                        obj.geometry.coordinates = supermarket.geometry.coordinates;
+
+                        features.push(obj);
+                    }
+                    placeMarkers();
+                }).catch((error) => {
+                    alert(error);
+                })
+            }
+
+            //markers gemaakt
+            function placeMarkers() {
+                map.addSource('places', {
+                    'type': 'geojson',
+                    'data': {
+                        'type': 'FeatureCollection',
+                        'features': features
+                    }
+                });
+
+                // Add a layer showing the places.
+                map.addLayer({
+                    'id': 'places',
+                    'type': 'symbol',
+                    'source': 'places',
+                    'layout': {
+                        'icon-image': '{icon}-15',
+                        'icon-size': 2,
+                        'icon-allow-overlap': true
+                    }
+                });
+
+                var popup = new mapboxgl.Popup({
+                    closeButton: false,
+                    closeOnClick: false
+                });
+
+                map.on('mouseenter', 'places', function (e) {
+
+                    const openTripMapKey = '5ae2e3f221c38a28845f05b6209bf7bfd923b79af11437d9379c8539';
+                    let url = 'https://api.opentripmap.com/0.1/en/places/xid/' + e.features[0].id,
+                        qString = '?apikey=' + openTripMapKey;
+                    fetch(url + qString)
+                        .then(resp => {
+                            return resp.json();
+                        }).then(data => {
+                        let address = '<p>' + data.address.road + ' ' + data.address.house_number + '<br>'  + data.address.city + '<br>' + '</p>';
+                        var coordinates = e.features[0].geometry.coordinates.slice();
+                        var description = e.features[0].properties.description + address;
+
+                        // Populate the popup and set its coordinates based on the feature found.
+                        popup.setLngLat(coordinates)
+                            .setHTML(description)
+                            .addTo(map);
+                    }).catch((error) => {
+                        alert(error);
+                    })
+                });
+
+                map.on('mouseleave', 'places', function () {
+                    popup.remove();
+                });
+            }
+
+            //markers gemaakt
+            function placeMarkers() {
+                map.addSource('places', {
+                    'type': 'geojson',
+                    'data': {
+                        'type': 'FeatureCollection',
+                        'features': features
+                    }
+                });
+
+                // Add a layer showing the places.
+                map.addLayer({
+                    'id': 'places',
+                    'type': 'symbol',
+                    'source': 'places',
+                    'layout': {
+                        'icon-image': '{icon}-15',
+                        'icon-size': 2,
+                        'icon-allow-overlap': true
+                    }
+                });
+
+                var popup = new mapboxgl.Popup({
+                    closeButton: false,
+                    closeOnClick: false
+                });
+
+              
+            }
+
+
+
+
 
             map.on('load', function () {
             	// Listen for the `geocoder.input` event that is triggered when a user
@@ -186,27 +331,27 @@ map.loadImage('images/flag.png', function (error, image){
 
 
 //WERKT WEL, GEKKE DATUM EN TEKST
- function getNews() {
-
-   var request = 'https://api.nasa.gov/planetary/apod?api_key=TmVvFQjkKXOxfapC7ExzRfOi2zf0CpYWdobgYXzM';
-
-   fetch(request)  //fetch is geef mij info, vraag stellen
-
-   // parse response to JSON format . daarna gebeurt dit,
-   .then(function(response) {
-     return response.json();
-   })
-
-   .then(function(response) {
-
-     console.log(response);
-     var nieuws = document.getElementById('nieuws');
-     //nieuws.innerHTML = response;
-     nieuws.innerHTML = (response.date) + '<br>' + (response.explanation);
-   //  weatherBox.innerHTML = 'Weather' + '</br>' + (response.main.temp - 273.15).toFixed(1) + ' &#176;C </br>' + '' + (response.weather[0].description) + '</br>' + 'Windspeed: ' + response.wind.speed + ' m/s';
-   });
- }
- getNews();
+ // function getNews() {
+ //
+ //   var request = 'https://api.nasa.gov/planetary/apod?api_key=TmVvFQjkKXOxfapC7ExzRfOi2zf0CpYWdobgYXzM';
+ //
+ //   fetch(request)  //fetch is geef mij info, vraag stellen
+ //
+ //   // parse response to JSON format . daarna gebeurt dit,
+ //   .then(function(response) {
+ //     return response.json();
+ //   })
+ //
+ //   .then(function(response) {
+ //
+ //     console.log(response);
+ //     var nieuws = document.getElementById('nieuws');
+ //     //nieuws.innerHTML = response;
+ //     nieuws.innerHTML = (response.date) + '<br>' + (response.explanation);
+ //   //  weatherBox.innerHTML = 'Weather' + '</br>' + (response.main.temp - 273.15).toFixed(1) + ' &#176;C </br>' + '' + (response.weather[0].description) + '</br>' + 'Windspeed: ' + response.wind.speed + ' m/s';
+ //   });
+ // }
+ // getNews();
 
 //open tripmap
  // function getNews() {
@@ -230,24 +375,24 @@ map.loadImage('images/flag.png', function (error, image){
  //   });
  // }
  // getNews();
- function getNews() {
-
-   var request = 'https://test.spaceflightnewsapi.net/api/v2/articles?_limit=5';
-
-   fetch(request)  //fetch is geef mij info, vraag stellen
-
-   // parse response to JSON format . daarna gebeurt dit,
-   .then(function(response) {
-     return response.json();
-   })
-
-   .then(function(response) {
-
-     console.log(response);
-    var nieuws = document.getElementById('nieuws');
-     //nieuws.innerHTML = response;
-    nieuws.innerHTML = 'Space News' + '</br>'+ (response[0].title) + '</br>' + (response[1].title) + '</br>' +(response[2].title) + '</br>' +(response[3].title);
-   //  weatherBox.innerHTML = 'Weather' + '</br>' + (response.main.temp - 273.15).toFixed(1) + ' &#176;C </br>' + '' + (response.weather[0].description) + '</br>' + 'Windspeed: ' + response.wind.speed + ' m/s';
-   });
- }
- getNews();
+ // function getNews() {
+ //
+ //   var request = 'https://test.spaceflightnewsapi.net/api/v2/articles?_limit=5';
+ //
+ //   fetch(request)  //fetch is geef mij info, vraag stellen
+ //
+ //   // parse response to JSON format . daarna gebeurt dit,
+ //   .then(function(response) {
+ //     return response.json();
+ //   })
+ //
+ //   .then(function(response) {
+ //
+ //     console.log(response);
+ //    var nieuws = document.getElementById('nieuws');
+ //     //nieuws.innerHTML = response;
+ //    nieuws.innerHTML = 'Space News' + '</br>'+ (response[0].title) + '</br>' + (response[1].title) + '</br>' +(response[2].title) + '</br>' +(response[3].title);
+ //   //  weatherBox.innerHTML = 'Weather' + '</br>' + (response.main.temp - 273.15).toFixed(1) + ' &#176;C </br>' + '' + (response.weather[0].description) + '</br>' + 'Windspeed: ' + response.wind.speed + ' m/s';
+ //   });
+ // }
+ // getNews();
