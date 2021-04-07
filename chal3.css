@@ -66,6 +66,10 @@ body {
 }
 
 
+.mapboxgl-popup-content {
+  color: black;
+}
+
 @media (min-width: 768px) {
 .grid-container {
     display: grid;
