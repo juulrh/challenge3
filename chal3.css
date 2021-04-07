@@ -7,6 +7,7 @@ body {
   color: white;
   font-family: poppins;
 }
+
 .grid-container {
     display: grid;
     grid-template-columns: 2fr;
@@ -16,14 +17,12 @@ body {
     'main3 main3';
 }
 
-
 .map {
     grid-area: main1;
 }
 .weer {
     grid-area: main2;
 }
-
 .nieuws {
   grid-area: main3;
 }
@@ -51,6 +50,7 @@ body {
   padding-top: 10px;
   font-size: 18px;
 }
+
 #nieuws {
  padding-left: 20px;
  margin-top: 20px;
@@ -61,40 +61,37 @@ body {
  font-size: 14px;
 }
 
-#geocoder {
-  color: black;
-}
-
-
 .mapboxgl-popup-content {
   color: black;
 }
 
 @media (min-width: 768px) {
-.grid-container {
-    display: grid;
-    grid-template-columns: 2fr;
-    grid-template-areas:
-    'main1 main2'
-    'main1 main3';
-}
-#map {
-  height: 75vh;
-  width: 50vw;
-}
+  .grid-container {
+      display: grid;
+      grid-template-columns: 2fr;
+      grid-template-areas:
+      'main1 main2'
+      'main1 main3';
+  }
 
-#weer {
-  height: 33vh;
-  width: 35vw;
-  margin-left: 40px;
-  margin-top: 35px;
-}
-#nieuws {
-  height: 33vh;
-  width: 35vw;
-  margin-left: 40px;
-  margin-top: -240px;
-}
+  #map {
+    height: 75vh;
+    width: 50vw;
+  }
+
+  #weer {
+    height: 33vh;
+    width: 35vw;
+    margin-left: 40px;
+    margin-top: 35px;
+  }
+
+  #nieuws {
+    height: 33vh;
+    width: 35vw;
+    margin-left: 40px;
+    margin-top: -240px;
+  }
 }
 
 @media (min-width: 1280px) {
@@ -106,28 +103,29 @@ body {
       'main2 main3';
   }
 
-#map {
-  width: 80vw;
-  margin-left: 80px;
-  height: 60vh;
+  #map {
+    width: 80vw;
+    margin-left: 80px;
+    height: 60vh;
+  }
+
+  #weer {
+    margin-left: 80px;
+    margin-top: 40px;
+    width: 30vw;
+  }
+
+   #nieuws {
+    margin-top: 40px;
+    margin-left: -650px;
+    width: 44vw;
+  }
+
+  #geocoder {
+    margin-left: 80px;
+  }
 }
 
-#weer {
-  margin-left: 80px;
-  margin-top: 40px;
-  width: 30vw;
-}
-
- #nieuws {
-  margin-top: 40px;
-  margin-left: -650px;
-  width: 44vw;
-}
-
-#geocoder {
-  margin-left: 80px;
-}
-}
 @media (min-width: 1920px) {
   .grid-container {
       display: grid;
@@ -135,25 +133,26 @@ body {
       grid-template-areas:
       'main1 main2 main3';
   }
+  
  #map {
   height: 70vh;
   width: 40vw;
   margin-left: 40px;
-}
+  }
 
-#weer {
-  height: 69vh;
-  width: 20vw;
-  margin-right: 900px;
-}
+  #weer {
+    height: 69vh;
+    width: 20vw;
+    margin-right: 900px;
+  }
 
- #nieuws {
-  height: 69vh;
-  margin-left: -850px;
-  width: 20vw;
-}
+   #nieuws {
+    height: 69vh;
+    margin-left: -850px;
+    width: 20vw;
+  }
 
-#geocoder {
-  margin-left: 40px;
-}
+  #geocoder {
+    margin-left: 40px;
+  }
 }
