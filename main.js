@@ -143,34 +143,34 @@ map.loadImage('images/flag.png', function (error, image){
                 });
 
                 features = [];
-                getSupermarkets(coords);
+                getBars(coords);
                 // getCultural(coords);
             });
 
             //andere api  parameter coords
-            function getSupermarkets(coords) {
+            function getBars(coords) {
                 const openTripMapKey = '5ae2e3f221c38a28845f05b6209bf7bfd923b79af11437d9379c8539';
                 let url = 'https://api.opentripmap.com/0.1/en/places/radius',
-                    qString = '?radius=1000&lon=' + coords[0] + '&lat=' + coords[1] + '&kinds=supermarkets&limit=20&apikey=' + openTripMapKey;
+                    qString = '?radius=1000&lon=' + coords[0] + '&lat=' + coords[1] + '&kinds=bars&limit=20&apikey=' + openTripMapKey;
 
                 fetch(url + qString)
                     .then(resp => {
                         return resp.json();
                     }).then(data => {
-                    let supermarkets = data.features;
+                    let bars = data.features;
 
-                    for (let i = 0; i < supermarkets.length; i++) {
-                        let supermarket = supermarkets[i];
+                    for (let i = 0; i < bars.length; i++) {
+                        let bar = bars[i];
 
                         let obj = {};
-                        obj.id = supermarket.id;
+                        obj.id = bar.id;
                         obj.type = 'Feature';
                         obj.properties = {};
-                        obj.properties.description = '<strong>' + supermarket.properties.name + '</strong>';
-                        obj.properties.icon = 'supermarket';
+                        obj.properties.description = '<strong>' + bar.properties.name + '</strong>';
+                        obj.properties.icon = 'bar';
                         obj.geometry = {};
                         obj.geometry.type = 'Point';
-                        obj.geometry.coordinates = supermarket.geometry.coordinates;
+                        obj.geometry.coordinates = bar.geometry.coordinates;
 
                         features.push(obj);
                     }
@@ -261,7 +261,31 @@ map.loadImage('images/flag.png', function (error, image){
                     closeOnClick: false
                 });
 
-              
+                map.on('mouseenter', 'places', function (e) {
+
+                    const openTripMapKey = '5ae2e3f221c38a28845f05b65370e244b3b310f07de647889ddf591c';
+                    let url = 'https://api.opentripmap.com/0.1/en/places/xid/' + e.features[0].id,
+                        qString = '?apikey=' + openTripMapKey;
+                    fetch(url + qString)
+                        .then(resp => {
+                            return resp.json();
+                        }).then(data => {
+                        let address = '<p>' + data.address.road + ' ' + data.address.house_number + '<br>' + data.address.postcode + ' ' + data.address.city + '<br>' + data.address.country + '</p>';
+                        var coordinates = e.features[0].geometry.coordinates.slice();
+                        var description = e.features[0].properties.description + address;
+
+                        // Populate the popup and set its coordinates based on the feature found.
+                        popup.setLngLat(coordinates)
+                            .setHTML(description)
+                            .addTo(map);
+                    }).catch((error) => {
+                        alert(error);
+                    })
+                });
+
+                map.on('mouseleave', 'places', function () {
+                    popup.remove();
+                });
             }
 
 
