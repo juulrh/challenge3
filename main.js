@@ -149,7 +149,7 @@ map.loadImage('images/flag.png', function (error, image){
             	});
             }
 
-//
+//WERKT NIET, SUBSRIBED
 // function getNews() {
 //
 //   var request = 'http://newsapi.org/v2/top-headlines?country=nl&apiKey=8bfdf0e85006470f90c1d383d80ee8e0';
@@ -171,46 +171,10 @@ map.loadImage('images/flag.png', function (error, image){
 //   });
 // }
 // getNews();
-//function getNews() {
-
-// fetch("https://bing-news-search1.p.rapidapi.com/news/trendingtopics?textFormat=Raw&safeSearch=Off", {
-// 	"method": "GET",
-// 	"headers": {
-// 		"x-search-location": "nederland",
-// 		"x-bingapis-sdk": "true",
-// 		"x-rapidapi-key": "275a3cf14fmsh01c3d97102967f5p181892jsnb4ff0a9e34ce",
-// 		"x-rapidapi-host": "bing-news-search1.p.rapidapi.com"
-// 	}
-// }) .then(function(response) {
-//     return response.json();
-//     })
-// //
-//  .then(function(response) {
-// //
-//   console.log(response);
-//   var nieuws = document.getElementById('nieuws');
-// //     //nieuws.innerHTML = response;
-// //     //weatherBox.innerHTML = response.weather[0].description;
-// //   //  weatherBox.innerHTML = 'Weather' + '</br>' + (response.main.temp - 273.15).toFixed(1) + ' &#176;C </br>' + '' + (response.weather[0].description) + '</br>' + 'Windspeed: ' + response.wind.speed + ' m/s';
-//   });
-//  }
-// fetch("https://covid-19-data.p.rapidapi.com/report/country/name?date=2020-04-01&name=Italy", {
-// 	"method": "GET",
-// 	"headers": {
-// 		"x-rapidapi-key": "275a3cf14fmsh01c3d97102967f5p181892jsnb4ff0a9e34ce",
-// 		"x-rapidapi-host": "covid-19-data.p.rapidapi.com"
-// 	}
-// })
-// .then(response => {
-// 	console.log(response);
-// })
-// .catch(err => {
-// 	console.error(err);
-// });
-// }
-//  getNews();
 
 
+
+// WERKT WEL, GEKKE DATUM EN TEKST
  function getNews() {
 
    var request = 'https://api.nasa.gov/planetary/apod?api_key=TmVvFQjkKXOxfapC7ExzRfOi2zf0CpYWdobgYXzM';
@@ -232,3 +196,26 @@ map.loadImage('images/flag.png', function (error, image){
    });
  }
  getNews();
+
+//open tripmap
+ // function getNews() {
+ //
+ //   var request = 'https://api.opentripmap.com/0.1/en/places/radius?radius=500&lon=6.533258519883534&lat=53.17623958958595&kinds=interesting_places&name=Interesting%20places&rate=2&format=json&limit=5&apikey=5ae2e3f221c38a28845f05b6209bf7bfd923b79af11437d9379c8539';
+ //
+ //   fetch(request)  //fetch is geef mij info, vraag stellen
+ //
+ //   // parse response to JSON format . daarna gebeurt dit,
+ //   .then(function(response) {
+ //     return response.json();
+ //   })
+ //
+ //   .then(function(response) {
+ //
+ //     console.log(response);
+ //  //   var nieuws = document.getElementById('nieuws');
+ //     //nieuws.innerHTML = response;
+ //     //nieuws.innerHTML = (response.date) + '<br>' + (response.explanation);
+ //   //  weatherBox.innerHTML = 'Weather' + '</br>' + (response.main.temp - 273.15).toFixed(1) + ' &#176;C </br>' + '' + (response.weather[0].description) + '</br>' + 'Windspeed: ' + response.wind.speed + ' m/s';
+ //   });
+ // }
+ // getNews();
