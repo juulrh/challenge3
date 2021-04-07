@@ -149,25 +149,86 @@ map.loadImage('images/flag.png', function (error, image){
             	});
             }
 
+//
+// function getNews() {
+//
+//   var request = 'http://newsapi.org/v2/top-headlines?country=nl&apiKey=8bfdf0e85006470f90c1d383d80ee8e0';
+//
+//   fetch(request)  //fetch is geef mij info, vraag stellen
+//
+//   // parse response to JSON format . daarna gebeurt dit,
+//   .then(function(response) {
+//     return response.json();
+//   })
+//
+//   .then(function(response) {
+//
+//     console.log(response);
+//     var nieuws = document.getElementById('nieuws');
+//     //nieuws.innerHTML = response;
+//     //weatherBox.innerHTML = response.weather[0].description;
+//   //  weatherBox.innerHTML = 'Weather' + '</br>' + (response.main.temp - 273.15).toFixed(1) + ' &#176;C </br>' + '' + (response.weather[0].description) + '</br>' + 'Windspeed: ' + response.wind.speed + ' m/s';
+//   });
+// }
+// getNews();
+//function getNews() {
 
-function getNews() {
+// fetch("https://bing-news-search1.p.rapidapi.com/news/trendingtopics?textFormat=Raw&safeSearch=Off", {
+// 	"method": "GET",
+// 	"headers": {
+// 		"x-search-location": "nederland",
+// 		"x-bingapis-sdk": "true",
+// 		"x-rapidapi-key": "275a3cf14fmsh01c3d97102967f5p181892jsnb4ff0a9e34ce",
+// 		"x-rapidapi-host": "bing-news-search1.p.rapidapi.com"
+// 	}
+// }) .then(function(response) {
+//     return response.json();
+//     })
+// //
+//  .then(function(response) {
+// //
+//   console.log(response);
+//   var nieuws = document.getElementById('nieuws');
+// //     //nieuws.innerHTML = response;
+// //     //weatherBox.innerHTML = response.weather[0].description;
+// //   //  weatherBox.innerHTML = 'Weather' + '</br>' + (response.main.temp - 273.15).toFixed(1) + ' &#176;C </br>' + '' + (response.weather[0].description) + '</br>' + 'Windspeed: ' + response.wind.speed + ' m/s';
+//   });
+//  }
+// fetch("https://covid-19-data.p.rapidapi.com/report/country/name?date=2020-04-01&name=Italy", {
+// 	"method": "GET",
+// 	"headers": {
+// 		"x-rapidapi-key": "275a3cf14fmsh01c3d97102967f5p181892jsnb4ff0a9e34ce",
+// 		"x-rapidapi-host": "covid-19-data.p.rapidapi.com"
+// 	}
+// })
+// .then(response => {
+// 	console.log(response);
+// })
+// .catch(err => {
+// 	console.error(err);
+// });
+// }
+//  getNews();
 
-  var request = 'https://newsapi.org/v2/top-headlines?country=nl&apiKey=8bfdf0e85006470f90c1d383d80ee8e0';
 
-  fetch(request)  //fetch is geef mij info, vraag stellen
+ function getNews() {
 
-  // parse response to JSON format . daarna gebeurt dit,
-  .then(function(response) {
-    return response.json();
-  })
+   var request = 'https://api.nasa.gov/planetary/apod?api_key=TmVvFQjkKXOxfapC7ExzRfOi2zf0CpYWdobgYXzM';
 
-  .then(function(response) {
+   fetch(request)  //fetch is geef mij info, vraag stellen
 
-    console.log(response);
-    var nieuws = document.getElementById('nieuws');
-    //nieuws.innerHTML = response;
-    //weatherBox.innerHTML = response.weather[0].description;
-  //  weatherBox.innerHTML = 'Weather' + '</br>' + (response.main.temp - 273.15).toFixed(1) + ' &#176;C </br>' + '' + (response.weather[0].description) + '</br>' + 'Windspeed: ' + response.wind.speed + ' m/s';
-  });
-}
-getNews();
+   // parse response to JSON format . daarna gebeurt dit,
+   .then(function(response) {
+     return response.json();
+   })
+
+   .then(function(response) {
+
+     console.log(response);
+     var nieuws = document.getElementById('nieuws');
+     //nieuws.innerHTML = response;
+     nieuws.innerHTML = (response.date) + '<br>' + (response.explanation);
+   //  weatherBox.innerHTML = 'Weather' + '</br>' + (response.main.temp - 273.15).toFixed(1) + ' &#176;C </br>' + '' + (response.weather[0].description) + '</br>' + 'Windspeed: ' + response.wind.speed + ' m/s';
+   });
+ }
+ getNews();
