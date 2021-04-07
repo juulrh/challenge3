@@ -23,6 +23,16 @@ var locaties = [{
       coordinates: [6.5159615333312315, 53.1797266170132]
     }
   },
+  {
+    type: 'Feature',
+    properties: {
+      description: '<p>Goede plek om te landen</p>',
+      icon: 'flag'
+    },
+    geometry: {
+      type: 'Point',
+      coordinates: [6.539079670415777, 53.168154040005206]
+    }
 ];
 
 // DE MAPS
